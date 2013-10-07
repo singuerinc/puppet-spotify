@@ -16,8 +16,7 @@ class spotify($version='0.8.5.1333') {
     command => "touch /Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig",
     cwd     => "/Users/${::luser}/Library/Application Support/Spotify",
     creates => "/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig",
-    path    => ["/usr/bin", "/usr/sbin"],
-    unless  => 'test -e /Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig'
+    path    => ["/usr/bin", "/usr/sbin"]
   }
 
   exec { "spotify_1":
