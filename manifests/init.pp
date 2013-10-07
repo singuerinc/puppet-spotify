@@ -5,28 +5,29 @@ class spotify($version='0.8.5.1333') {
     source   => "https://www.dropbox.com/s/b4ml7cdaquzw07h/Spotify_${version}.dmg"
   }
 
+  file {'Spotify_new_archive':
+      ensure  => present,
+      path    => "/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive",
+      mode    => '0640',
+      content => '',
+      require => Package['spotify']
+  }
+
+  file {'Spotify_new_archive_sig':
+      ensure  => present,
+      path    => "/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig",
+      mode    => '0640',
+      content => '',
+      require => Package['spotify']
+  }
+
   exec { 'spotify_setup_1':
-    command => 'touch ~/Library/Application\ Support/Spotify/Spotify_new.archive',
-    unless  => 'test -e ~/Library/Application\ Support/Spotify/Spotify_new.archive',
-    require => Package['spotify']
+    command => "chflags uchg /Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive",
+    require => File['Spotify_new_archive']
   }
 
   exec { 'spotify_setup_2':
-    command => 'chflags uchg ~/Library/Application\ Support/Spotify/Spotify_new.archive',
-    unless  => 'test -e ~/Library/Application\ Support/Spotify/Spotify_new.archive',
-    require => Package['spotify']
+    command => "chflags uchg /Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig",
+    require => File['Spotify_new_archive_sig']
   }
-
-  exec { 'spotify_setup_3':
-    command => 'touch ~/Library/Application\ Support/Spotify/Spotify_new.archive.sig',
-    unless  => 'test -e ~/Library/Application\ Support/Spotify/Spotify_new.archive.sig',
-    require => Package['spotify']
-  }
-
-  exec { 'spotify_setup_4':
-    command => 'chflags uchg ~/Library/Application\ Support/Spotify/Spotify_new.archive.sig',
-    unless  => 'test -e ~/Library/Application\ Support/Spotify/Spotify_new.archive.sig',
-    require => Package['spotify']
-  }
-
 }
