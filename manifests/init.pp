@@ -8,7 +8,6 @@ class spotify($version='0.8.5.1333') {
   file {'Spotify_new_archive':
       ensure  => present,
       path    => "/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive",
-      mode    => '0640',
       content => '',
       require => Package['spotify']
   }
@@ -16,7 +15,6 @@ class spotify($version='0.8.5.1333') {
   file {'Spotify_new_archive_sig':
       ensure  => present,
       path    => "/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig",
-      mode    => '0640',
       content => '',
       require => Package['spotify']
   }
