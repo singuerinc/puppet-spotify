@@ -5,31 +5,27 @@ class spotify($version='0.8.5.1333') {
     source   => "https://www.dropbox.com/s/b4ml7cdaquzw07h/Spotify_${version}.dmg"
   }
 
-  file { "Spotify_new_archive" :
-    path    => "/Users/${::luser}/Library/Application\ Support/Spotify/Spotify_new.archive"
+  file { "/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive" :
     ensure  => file,
-    owner   => "${::luser}",
-    recurse => true,
+    owner   => "${::luser}"
   }
 
-  file { "Spotify_new_archive_sig" :
-    path    => "/Users/${::luser}/Library/Application\ Support/Spotify/Spotify_new.archive.sig"
+  file { "/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig" :
     ensure  => file,
-    owner   => "${::luser}",
-    recurse => true,
+    owner   => "${::luser}"
   }
 
-  exec { "spotify_1":
-    command => "chflags uchg /Users/${::luser}/Library/Application\ Support/Spotify/Spotify_new.archive",
-    cwd     => "/Users/${::luser}/Library/Application\ Support/Spotify",
-    path    => ["/usr/bin", "/usr/sbin"],
-    require => Exec['Spotify_new_archive']
+  exec { 'spotify_1':
+    command => "chflags uchg /Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive",
+    cwd     => "/Users/${::luser}/Library/Application Support/Spotify",
+    path    => ['/usr/bin', '/usr/sbin'],
+    require => File["/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive"]
   }
 
-  exec { "spotify_2":
-    command => "chflags uchg /Users/${::luser}/Library/Application\ Support/Spotify/Spotify_new.archive.sig",
-    cwd     => "/Users/${::luser}/Library/Application\ Support/Spotify",
-    path    => ["/usr/bin", "/usr/sbin"],
-    require => Exec['Spotify_new_archive_sig']
+  exec { 'spotify_2':
+    command => "chflags uchg /Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig",
+    cwd     => "/Users/${::luser}/Library/Application Support/Spotify",
+    path    => ['/usr/bin', '/usr/sbin'],
+    require => File["/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig"]
   }
 }
