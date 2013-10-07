@@ -23,12 +23,12 @@ class spotify($version='0.8.5.1333') {
   exec { "chflags uchg /Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive":
     cwd     => "/Users/${::luser}/Library/Application Support/Spotify",
     path    => ["/usr/bin", "/usr/sbin"],
-    require => File['Spotify_new_archive']
+    require => Exec['Spotify_new_archive']
   }
 
   exec { "chflags uchg /Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig":
     cwd     => "/Users/${::luser}/Library/Application Support/Spotify",
     path    => ["/usr/bin", "/usr/sbin"],
-    require => File['Spotify_new_archive_sig']
+    require => Exec['Spotify_new_archive_sig']
   }
 }
