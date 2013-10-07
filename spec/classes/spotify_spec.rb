@@ -5,7 +5,7 @@ describe 'spotify' do
 
   it do
     should contain_package("spotify").with({
-        :provider => 'appdmg',
+        :provider => 'appdmg_eula',
         :source   => "https://www.dropbox.com/s/b4ml7cdaquzw07h/Spotify_#{version}.dmg"
     })
   end
