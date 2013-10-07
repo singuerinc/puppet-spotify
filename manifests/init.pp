@@ -22,14 +22,14 @@ class spotify($version='0.8.5.1333') {
   }
 
   exec { 'spotify_1':
-    command => "chflags uchg ${file1}",
+    command => "chflags uchg '${file1}'",
     cwd     => "/Users/${::luser}/Library/Application Support/Spotify",
     path    => ['/usr/bin', '/usr/sbin'],
     require => File['Spotify_new']
   }
 
   exec { 'spotify_2':
-    command => "chflags uchg ${file2}",
+    command => "chflags uchg '${file2}'",
     cwd     => "/Users/${::luser}/Library/Application Support/Spotify",
     path    => ['/usr/bin', '/usr/sbin'],
     require => File['Spotify_new_sig']
