@@ -1,12 +1,12 @@
 # This is a placeholder class.
-class spotify($version='0.8.5.1333') {
+class spotify() {
 
   $file1="/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive"
   $file2="/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig"
 
   package { 'spotify':
-    provider => 'appdmg_eula',
-    source   => "https://www.dropbox.com/s/b4ml7cdaquzw07h/Spotify_${version}.dmg"
+    provider => 'appdmg',
+    source   => "https://dl.dropboxusercontent.com/u/311265/apps/Spotify.dmg"
   }
 
   file { 'Spotify_new' :
