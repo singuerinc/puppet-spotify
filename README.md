@@ -13,12 +13,6 @@ You can even download your favorite music for when you’re offline.
 include spotify
 ```
 
-or
-
-```puppet
-class { 'spotify': version => '0.8.5.1333' }
-```
-
 ## Required Puppet Modules
 
 * `boxen`
