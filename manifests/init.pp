@@ -5,8 +5,8 @@ class spotify() {
   $file2="/Users/${::luser}/Library/Application Support/Spotify/Spotify_new.archive.sig"
 
   package { 'spotify':
-    provider => 'appdmg',
-    source   => "https://dl.dropboxusercontent.com/u/311265/apps/Spotify.dmg"
+    provider => 'compressed_app',
+    source   => "https://dl.dropboxusercontent.com/u/311265/apps/Spotify.zip"
   }
 
   file { 'Spotify_new' :
